@@ -1,0 +1,325 @@
+<!DOCTYPE html>  
+<html lang="id">  
+<head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+<title>Modern Split LinkTree</title>  
+<link rel="stylesheet" href="style.css">  
+</head>  
+<body>  
+  
+<div class="container">  
+  
+<!-- LEFT -->  
+<div class="left">  
+  
+<img  
+id="profileImage"  
+class="profile-img"  
+src="https://i.imgur.com/6VBx3io.png">  
+  
+<div  
+class="profile-name"  
+id="profileName">  
+Ray  
+</div>  
+  
+<div  
+class="profile-bio"  
+id="profileBio">  
+Welcome to my modern split LinkTree ✨  
+</div>  
+  
+<div  
+class="links"  
+id="linksContainer">  
+</div>  
+  
+<div class="admin-panel-box">  
+  
+<button  
+class="admin-panel-btn"  
+onclick="openLogin()">  
+  
+[Owner Acces]  
+  
+</button>  
+  
+</div>  
+  
+</div>  
+  
+<!-- RIGHT -->  
+<div class="right">  
+  
+<div class="right-glow"></div>  
+  
+<div class="quote">  
+“Create. Share. Connect.”  
+</div>  
+  
+<p>  
+Modern split screen LinkTree dengan owner acces,  
+galeri foto, custom logo link, dan localStorage.  
+</p>  
+  
+<div class="stats">  
+  
+<div class="stat-box">  
+<h2 id="statLinks">0</h2>  
+<p>Links</p>  
+</div>  
+  
+<div class="stat-box">  
+<h2>⚡</h2>  
+<p>Fast</p>  
+</div>  
+  
+<div class="stat-box">  
+<h2>24/7</h2>  
+<p>Online</p>  
+</div>  
+  
+</div>  
+  
+</div>  
+  
+</div>  
+  
+<!-- LOGIN -->  
+<div class="modal" id="loginModal">  
+  
+<div class="modal-content">  
+  
+<h2 style="margin-bottom:20px;">  
+Owner Login  
+</h2>  
+  
+<div class="input-group">  
+  
+<label>Email</label>  
+  
+<div class="input-wrap">  
+  
+<input  
+type="password"  
+id="loginEmail"  
+placeholder="Masukkan email">  
+  
+<button  
+class="eye-btn"  
+onclick="toggleInput('loginEmail')">  
+👁️  
+</button>  
+  
+</div>  
+  
+</div>  
+  
+<div class="input-group">  
+  
+<label>PIN (6 digit)</label>  
+  
+<div class="input-wrap">  
+  
+<input  
+type="password"  
+maxlength="6"  
+id="loginPin"  
+placeholder="Masukkan PIN">  
+  
+<button  
+class="eye-btn"  
+onclick="toggleInput('loginPin')">  
+👁️  
+</button>  
+  
+</div>  
+  
+</div>  
+  
+<button  
+class="btn btn-primary"  
+onclick="loginAdmin()">  
+Login  
+</button>  
+  
+<button  
+class="btn btn-secondary"  
+onclick="closeLogin()">  
+Tutup  
+</button>  
+  
+</div>  
+  
+</div>  
+  
+<!-- OWNER PANEL -->  
+<div class="modal" id="adminModal">  
+  
+<div class="modal-content">  
+  
+<div class="top-close">  
+<button  
+class="close-btn"  
+onclick="closeAdmin()">  
+✖ Keluar  
+</button>  
+</div>  
+  
+<h2 style="margin-bottom:20px;">  
+[Owner Acces]  
+</h2>  
+  
+<div class="input-group">  
+  
+<label>Foto Profil</label>  
+  
+<div class="input-wrap">  
+<input type="text" id="adminProfileImage">  
+</div>  
+  
+<div class="profile-upload-column">  
+  
+<label  
+for="profileGalleryInput"  
+class="gallery-btn">  
+  
+📁 Langsung Pakai Di Galeri/Foto  
+  
+</label>  
+  
+<input  
+type="file"  
+id="profileGalleryInput"  
+accept="image/*"  
+hidden>  
+  
+</div>  
+  
+</div>  
+  
+<div class="input-group">  
+<label>Nama</label>  
+<div class="input-wrap">  
+<input type="text" id="adminProfileName">  
+</div>  
+</div>  
+  
+<div class="input-group">  
+<label>Bio</label>  
+<div class="input-wrap">  
+<textarea id="adminProfileBio"></textarea>  
+</div>  
+</div>  
+  
+<button  
+class="btn btn-primary"  
+onclick="saveProfile()">  
+Simpan Profil  
+</button>  
+  
+<hr>  
+  
+<h2>  
+Tambah Link  
+</h2>  
+  
+<div class="input-group">  
+<label>Kategori</label>  
+<div class="input-wrap">  
+<input  
+type="text"  
+id="linkCategory"  
+placeholder="Contoh: Anime">  
+</div>  
+</div>  
+  
+<div class="input-group">  
+<label>Emoji</label>  
+<div class="input-wrap">  
+<input  
+type="text"  
+id="linkEmoji"  
+placeholder="🔗">  
+</div>  
+</div>  
+  
+<div class="input-group">  
+<label>Judul Link</label>  
+<div class="input-wrap">  
+<input  
+type="text"  
+id="linkTitle">  
+</div>  
+</div>  
+  
+<div class="input-group">  
+<label>Bio Link</label>  
+<div class="input-wrap">  
+<input  
+type="text"  
+id="linkBio"  
+placeholder="Kosongkan jika tidak mau ada deskripsi">  
+</div>  
+</div>  
+  
+<div class="input-group">  
+<label>URL</label>  
+<div class="input-wrap">  
+<input  
+type="text"  
+id="linkURL">  
+</div>  
+</div>  
+  
+<div class="input-group">  
+  
+<label>Tambah Foto Di Sini</label>  
+  
+<div class="input-wrap">  
+<input  
+type="text"  
+id="linkImage"  
+placeholder="Masukkan url foto/logo di sini">  
+</div>  
+  
+<div class="profile-upload-column">  
+  
+<label  
+for="galleryInput"  
+class="gallery-btn">  
+  
+📁 Langsung Pakai Di Galeri/Foto  
+  
+</label>  
+  
+<input  
+type="file"  
+id="galleryInput"  
+accept="image/*"  
+hidden>  
+  
+</div>  
+  
+</div>  
+  
+<button  
+class="btn btn-primary"  
+onclick="saveLink()">  
+Tambah Link  
+</button>  
+  
+<div  
+class="admin-links"  
+id="adminLinks">  
+</div>  
+  
+</div>  
+  
+</div>  
+  
+<script src="script.js"></script>  
+  
+</body>  
+</html>
